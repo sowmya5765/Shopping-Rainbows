@@ -3,12 +3,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 const cors = require("cors");
 import jwt from 'jsonwebtoken';
-const secretKey: any = process.env.SECRET_KEY;
 let app = express();
 
 app.use(cors());
 app.use(express.json());
 dotenv.config();
+const secretKey: any = process.env.SECRET_KEY;
 
 mongoose.connect("mongodb://localhost:27017/shopping");
 let db = mongoose.connection;
@@ -34,9 +34,9 @@ db.on("open",()=>console.log("DB connection Established!"));
 
 app.use("/admin",require("./controllers/admin"));
 // app.use("/productType",require("./controllers/itemCategory"));
-// app.use("/product",require("./controllers/item"));
+app.use("/product",require("./controllers/product"));
 app.use("/user",require("./controllers/user"));
-// app.use("/order",require("./controllers/order"));
+app.use("/order",require("./controllers/order"));
 // app.use("/cart",require("./controllers/cart"));
 
 app.listen(1309,function(){

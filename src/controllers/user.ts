@@ -6,11 +6,11 @@ const userService = new UserService();
 router.post("/create", async(req:any,res:any)=>{
     try{
         await userService.userCreate(req.body);
-        res.end(JSON.stringify({status:"success"
+        res.status(200).send(JSON.stringify({status:"success"
         }));
     } catch(err){
         console.log("Error while user creation",err);
-        res.end(JSON.stringify({data:err? err:'Failed to login'}));
+        res.status(500).send(JSON.stringify({data:err? err:'Failed to login'}));
     }
 })
 
