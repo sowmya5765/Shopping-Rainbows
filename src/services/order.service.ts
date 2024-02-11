@@ -24,6 +24,12 @@ export class OrderService{
     async bookOrder(body:any){
         try{
             body.id = uuidv4();
+            body.userId = "143c7cca-92fa-4d64-b1b3-d0e343a29e5d";
+            body.address= "BVR Homes";
+            body.city= "Chennai";
+            body.state = "Tamil Nadu";
+            body.pinCode = 5347587;
+            body.status = "CONFIRMED";
             await OrderModel.insertMany([body]);
             body.items.map(async (item:any)=>{
                 await ItemModel.findOneAndUpdate({id:item.id},{ $inc: {inStock: -item.quantity}})
