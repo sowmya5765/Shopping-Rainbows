@@ -7,7 +7,7 @@ let schema = new Schema({
     address:{type: String, required:true},
     city:{type: String, required:true},
     state:{type: String, required:true},
-    pinCode:{type:Number,required:true},
+    pinCode:{type:String,required:true},
     amtPaid:{type:Number,required:true},
     status:{type: String, required:true},
     items:[]
