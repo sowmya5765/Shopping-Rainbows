@@ -29,14 +29,15 @@ export class AdminService{
 
             const refreshToken = jwt.sign(refreshPayload,secretKey,{ algorithm: "HS256",expiresIn:'1h'});
 
-            let user = await UserModel.findOneAndUpdate({emailId:req.body.emailId},{$set:{
+            let user:any = await UserModel.findOneAndUpdate({emailId:req.body.emailId},{$set:{
                 updatedTime: new Date(),
                 status:userStatus.USER_ACTIVE
             }});
 
             return {
                 accessToken:accessToken,
-                refreshToken:refreshToken
+                refreshToken:refreshToken,
+                userId:user.id
             }
         }catch(err){
             console.log(err);
